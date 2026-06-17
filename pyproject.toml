@@ -1,6 +1,7 @@
 [project]
 name = "reefvoice"
 version = "1.0.0"
+requires-python = ">=3.11"
 
 [tool.vercel]
 entrypoint = "reefvoice.api.main:app"
