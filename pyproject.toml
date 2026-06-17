@@ -1,0 +1,6 @@
+[project]
+name = "reefvoice"
+version = "1.0.0"
+
+[tool.vercel]
+entrypoint = "reefvoice.api.main:app"
