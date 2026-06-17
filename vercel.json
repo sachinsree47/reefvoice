@@ -1,8 +1,5 @@
 {
   "version": 2,
   "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/build",
-  "env": {
-    "REACT_APP_API_URL": "https://reefvoice.vercel.app"
-  }
+  "outputDirectory": "frontend/build"
 }
