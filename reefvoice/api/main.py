@@ -333,3 +333,11 @@ async def analyze_audio(file: UploadFile = File(...)):
         "filename": file.filename,
         **result
     }
+@app.get("/debug")
+def debug():
+    return {
+        "cwd": os.getcwd(),
+        "file": __file__,
+        "root_exists": ROOT.exists(),
+        "score_exists": (ROOT / "score.py").exists(),
+    }
