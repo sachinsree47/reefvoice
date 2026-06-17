@@ -7,17 +7,17 @@ import random
 import sys
 import unicodedata
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
+# Add project root to Python path
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+
 try:
     from score import analyze
-except Exception:
-    # If model dependencies (torch, etc.) are not installed in this environment
-    # we provide a placeholder analyze function so the API can start and
-    # the /reefs endpoints remain available. The real model will be used
-    # when the dependencies are installed and the server restarted.
-    def analyze(path):
-        raise RuntimeError("Model not available in this environment: install torch to enable audio analysis")
+except Exception as e:
+    print(f"IMPORT ERROR: {e}")
 
+    def analyze(path):
+        raise RuntimeError(f"Model not available: {e}")
 app = FastAPI(title="ReefVoice API", version="1.0.0")
 
 app.add_middleware(
