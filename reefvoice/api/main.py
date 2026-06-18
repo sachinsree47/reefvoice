@@ -278,6 +278,7 @@ def to_ascii(text: str) -> str:
 
 # ── Routes ────────────────────────────────────────────────
 @app.get("/")
+@app.head("/")
 def root():
     return {"status": "ReefVoice API running", "version": "1.0.0"}
 
