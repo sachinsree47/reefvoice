@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: reefvoice-backend
+    env: docker
+    branch: main
+    plan: free
+    autoDeploy: true
+    dockerfilePath: Dockerfile
+    healthCheckPath: "/"
+    instanceCount: 1
+    pullRequestPreviewsEnabled: false
+    envVars:
+      - key: RENDER_LOG_LEVEL
+        value: info

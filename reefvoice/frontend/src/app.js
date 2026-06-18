@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ReferenceLine, ResponsiveContainer, ReferenceArea } from "recharts";
 import "leaflet/dist/leaflet.css";
 
-const API = "http://localhost:8000";
+const API = "https://reefvoice.onrender.com";
 
 const scoreColor = (s) => s > 65 ? "#1D9E75" : s > 35 ? "#EF9F27" : "#E24B4A";
 const scoreLabel = (s) => s > 65 ? "HEALTHY" : s > 35 ? "STRESSED" : "BLEACHED";

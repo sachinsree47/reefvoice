@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ReferenceLine, ResponsiveContainer, ReferenceArea } from "recharts";
 import "leaflet/dist/leaflet.css";
 
-const API = (process.env.REACT_APP_API_URL || "http://localhost:8000").replace(/\/$/, "");
+const API = (process.env.REACT_APP_API_URL || "https://reefvoice.onrender.com").replace(/\/$/, "");
 
 const fetchJson = async (path, options = {}) => {
   const res = await fetch(`${API}${path}`, options);
