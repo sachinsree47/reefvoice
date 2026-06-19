@@ -27,8 +27,11 @@ app = FastAPI(title="ReefVoice API", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_origin_regex=".*",
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
+    max_age=600,
 )
 
 # ── Mock reef stations (seeded with realistic data) ───────
