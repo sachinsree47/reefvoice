@@ -375,17 +375,15 @@ def test_model():
 @app.get("/analyze-selftest")
 def analyze_selftest():
     try:
-        from score import _load_model
-        _load_model()
+        from score import analyze
 
         return {
-            "status": "success",
-            "model_loaded": True
+            "status": "analyze_import_ok"
         }
-    except Exception as e:
+    except Exception as ex:
         return {
-            "status": "failed",
-            "error": str(e)
+            "status": "error",
+            "error": str(ex)
         }
 
 @app.get("/model-path")
@@ -461,10 +459,17 @@ def model_load_test():
         from score import ReefCNN
 
         model = ReefCNN()
+
         model.load_state_dict(
             torch.load("models/reefcnn_best.pt", map_location="cpu")
         )
 
-        return {"status": "loaded"}
+        return {
+            "status": "loaded"
+        }
+
     except Exception as ex:
-        return {"status": "error", "error": str(ex)}
+        return {
+            "status": "error",
+            "error": str(ex)
+        }
