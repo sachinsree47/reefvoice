@@ -11,13 +11,16 @@ import unicodedata
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+IMPORT_ERROR = None
+
 try:
     from score import analyze
 except Exception as e:
-    print(f"IMPORT ERROR: {e}")
+    IMPORT_ERROR = str(e)
+    print(f"IMPORT ERROR: {IMPORT_ERROR}")
 
     def analyze(path):
-        raise RuntimeError(f"Model not available: {e}")
+        raise RuntimeError(f"Model not available: {IMPORT_ERROR}")
 app = FastAPI(title="ReefVoice API", version="1.0.0")
 
 app.add_middleware(
