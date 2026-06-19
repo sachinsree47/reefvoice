@@ -346,3 +346,21 @@ def debug():
         "root_exists": ROOT.exists(),
         "score_exists": (ROOT / "score.py").exists(),
     }
+
+@app.get("/test-model")
+def test_model():
+    try:
+        from score import _load_model
+
+        model = _load_model()
+
+        return {
+            "status": "ok",
+            "model_loaded": True
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "error": str(e)
+        }
