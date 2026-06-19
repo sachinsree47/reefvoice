@@ -340,11 +340,16 @@ async def analyze_audio(file: UploadFile = File(...)):
     }
 @app.get("/debug")
 def debug():
+    model_path = ROOT / "models" / "reefcnn_best.pt"
+
     return {
         "cwd": os.getcwd(),
         "file": __file__,
-        "root_exists": ROOT.exists(),
+        "root": str(ROOT),
         "score_exists": (ROOT / "score.py").exists(),
+        "model_exists": model_path.exists(),
+        "model_path": str(model_path),
+        "import_error": IMPORT_ERROR
     }
 
 @app.get("/test-model")
