@@ -352,11 +352,19 @@ def debug():
         "import_error": IMPORT_ERROR,
     }
 
+@app.get("/test-analyze")
+def test_analyze():
+    try:
+        from score import analyze
+        return {"status": "analyze import ok"}
+    except Exception as e:
+        return {"error": str(e)}
+
 @app.get("/test-model")
 def test_model():
     try:
         from score import _load_model
         _load_model()
-        return {"status": "ok"}
+        return {"status": "model loaded"}
     except Exception as e:
-        return {"status": "error", "error": str(e)}
+        return {"error": str(e)}
