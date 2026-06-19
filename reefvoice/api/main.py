@@ -368,3 +368,31 @@ def test_model():
         return {"status": "model loaded"}
     except Exception as e:
         return {"error": str(e)}
+    
+@app.get("/analyze-selftest")
+def analyze_selftest():
+    try:
+        from score import _load_model
+        _load_model()
+
+        return {
+            "status": "success",
+            "model_loaded": True
+        }
+    except Exception as e:
+        return {
+            "status": "failed",
+            "error": str(e)
+        }
+
+@app.get("/model-path")
+def model_path():
+    from pathlib import Path
+
+    p = Path("models/reefcnn_best.pt")
+
+    return {
+        "exists": p.exists(),
+        "absolute": str(p.resolve()),
+        "size_bytes": p.stat().st_size if p.exists() else 0
+    }    
