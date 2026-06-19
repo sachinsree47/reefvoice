@@ -426,3 +426,11 @@ def librosa_test():
         }
     except Exception as e:
         return {"error": str(e)}
+    
+@app.post("/analyze-test")
+async def analyze_test(file: UploadFile = File(...)):
+    return {
+        "filename": file.filename,
+        "content_type": file.content_type,
+        "status": "upload_received"
+    }
