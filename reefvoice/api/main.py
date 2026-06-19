@@ -403,3 +403,26 @@ def version():
     return {
         "version": "BUILD-2026-06-18-1"
     }
+
+@app.get("/model-test")
+def model_test():
+    try:
+        from score import analyze
+        return {"status": "import_ok"}
+    except Exception as e:
+        return {"status": "import_failed", "error": str(e)}
+    
+@app.get("/librosa-test")
+def librosa_test():
+    try:
+        import librosa
+        import soundfile
+        import torch
+
+        return {
+            "librosa": librosa.__version__,
+            "soundfile": "ok",
+            "torch": torch.__version__
+        }
+    except Exception as e:
+        return {"error": str(e)}
