@@ -434,3 +434,34 @@ async def analyze_test(file: UploadFile = File(...)):
         "content_type": file.content_type,
         "status": "upload_received"
     }
+@app.get("/analyze-health")
+def analyze_health():
+    try:
+        import torch
+        import librosa
+
+        return {
+            "torch": torch.__version__,
+            "librosa": librosa.__version__,
+            "status": "ok"
+        }
+    except Exception as ex:
+        return {
+            "status": "error",
+            "error": str(ex)
+        }
+    
+@app.get("/model-load-test")
+def model_load_test():
+    try:
+        import torch
+        from score import ReefCNN
+
+        model = ReefCNN()
+        model.load_state_dict(
+            torch.load("models/reefcnn_best.pt", map_location="cpu")
+        )
+
+        return {"status": "loaded"}
+    except Exception as ex:
+        return {"status": "error", "error": str(ex)}
