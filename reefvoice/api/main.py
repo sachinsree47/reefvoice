@@ -349,23 +349,14 @@ def debug():
         "score_exists": (ROOT / "score.py").exists(),
         "model_exists": model_path.exists(),
         "model_path": str(model_path),
-        "import_error": IMPORT_ERROR
+        "import_error": IMPORT_ERROR,
     }
 
 @app.get("/test-model")
 def test_model():
     try:
         from score import _load_model
-
-        model = _load_model()
-
-        return {
-            "status": "ok",
-            "model_loaded": True
-        }
-
+        _load_model()
+        return {"status": "ok"}
     except Exception as e:
-        return {
-            "status": "error",
-            "error": str(e)
-        }
+        return {"status": "error", "error": str(e)}
