@@ -397,8 +397,9 @@ def model_path():
         "size_bytes": p.stat().st_size if p.exists() else 0
     }    
 
+print("=== REEFVOICE BUILD 2026-06-18 TEST ===")
 @app.get("/version")
 def version():
     return {
-        "version": "TEST-12345"
+        "version": "BUILD-2026-06-18-1"
     }
