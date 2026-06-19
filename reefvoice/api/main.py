@@ -396,3 +396,9 @@ def model_path():
         "absolute": str(p.resolve()),
         "size_bytes": p.stat().st_size if p.exists() else 0
     }    
+
+@app.get("/version")
+def version():
+    return {
+        "version": "TEST-12345"
+    }
