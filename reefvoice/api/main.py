@@ -413,20 +413,6 @@ def model_test():
     except Exception as e:
         return {"status": "import_failed", "error": str(e)}
     
-@app.get("/librosa-test")
-def librosa_test():
-    try:
-        import librosa
-        import soundfile
-        import torch
-
-        return {
-            "librosa": librosa.__version__,
-            "soundfile": "ok",
-            "torch": torch.__version__
-        }
-    except Exception as e:
-        return {"error": str(e)}
     
 @app.post("/analyze-test")
 async def analyze_test(file: UploadFile = File(...)):
