@@ -43,7 +43,7 @@ def _load_model():
     if _model is not None:
         return _model
     model = ReefCNN(n_classes=3)
-    weights = Path("models/reefcnn_best.pt")
+    weights = Path(__file__).resolve().parent / "models" / "reefcnn_best.pt"
     if not weights.exists():
         raise FileNotFoundError("Model not found. Run train.py first.")
     model.load_state_dict(torch.load(weights, map_location=_device))
