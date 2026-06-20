@@ -1,4 +1,5 @@
 import torch
+torch.set_num_threads(1)  # Force PyTorch to use 1 thread to prevent Render OOM
 import torch.nn as nn
 import librosa
 import numpy as np
